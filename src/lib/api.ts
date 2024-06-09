@@ -1,4 +1,3 @@
-// const BASE_URL = "https://simple-todo-api.arafipro.workers.dev";
 const BASE_URL = "https://farma-be.ka28.workers.dev";
 
 export async function deleteTodo(id: number) {
