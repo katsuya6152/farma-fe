@@ -1,4 +1,4 @@
 type Todo = {
-    id?: number;
-    todo: string;
+  id?: number;
+  todo: string;
 };
