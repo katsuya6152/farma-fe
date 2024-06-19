@@ -1,15 +1,22 @@
-import { getTodos } from "@/lib/api";
-import TodoForm from "./components/TodoForm";
-import TodoTable from "./components/TodoTable";
+import { getShippingData } from "@/lib/api";
+import { Shipping } from "@/types/ShippingManagement";
+import ShippingManagementTable from "@/app/components/ShippingManagementTable"
+import Sidebar from "./components/Sidebar";
+
+import { columns } from "@/app/components/ShippingManagementTable";
 
 export const runtime = "edge";
 
-export default async function Home() {
-  const todos = await getTodos();
+
+export default async function TOP() {
+  const shippingData: Shipping[] = await getShippingData();
+
   return (
-    <main className="container mx-auto space-y-4">
-      <TodoForm />
-      <TodoTable todos={todos} />
-    </main>
+    <div className="grid min-h-screen md:grid-cols-[120px_1fr] lg:grid-cols-[180px_1fr]">
+      <Sidebar/>
+      <main className="container my-4 max-w-full overflow-x-auto">
+        <ShippingManagementTable columns={columns} data={shippingData} />
+      </main>
+    </div>
   );
 }

@@ -3,6 +3,7 @@
 import { createTodo } from "@/lib/api";
 import { useRouter } from "next/navigation";
 import { FormEvent, useRef } from "react";
+import { Button } from "@/components/ui/button";
 
 const TodoForm = () => {
   const router = useRouter();
@@ -21,18 +22,16 @@ const TodoForm = () => {
       <label>TODO</label>
       <input type="text" className="border-2 rounded-lg p-1" ref={todoRef} />
       <div className="flex space-x-4 mt-4">
-        <button
+        <Button
           type="submit"
-          className="bg-black text-white rounded-lg w-full p-1"
         >
           登録
-        </button>
-        <button
+        </Button>
+        <Button
           type="reset"
-          className="bg-white text-black border-2 border-black/30 rounded-lg w-full p-1"
         >
           リセット
-        </button>
+        </Button>
       </div>
     </form>
   );
