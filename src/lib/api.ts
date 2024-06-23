@@ -1,8 +1,7 @@
 import { Shipping } from "@/types/ShippingManagement";
 
-
-const BASE_URL = "https://farma-be.ka28.workers.dev";
-// const BASE_URL = "http://127.0.0.1:8787";
+// const BASE_URL = "https://farma-be.ka28.workers.dev";
+const BASE_URL = "http://127.0.0.1:8787";
 
 export async function deleteTodo(id: number) {
   const res = await fetch(`${BASE_URL}/api/todos/${id}`, {
@@ -29,16 +28,6 @@ export async function createTodo(todo: Todo) {
     throw new Error("データを登録できませんでした");
   }
   return res.json<Todo>();
-}
-
-export async function getTodos() {
-  const res = await fetch(`${BASE_URL}/api/todos`, {
-    cache: "no-store",
-  });
-  if (!res.ok) {
-    throw new Error("データが取得できませんでした");
-  }
-  return res.json<Todo[]>();
 }
 
 export async function getShippingData() {
