@@ -1,4 +1,8 @@
+import { Shipping } from "@/types/ShippingManagement";
+
+
 const BASE_URL = "https://farma-be.ka28.workers.dev";
+// const BASE_URL = "http://127.0.0.1:8787";
 
 export async function deleteTodo(id: number) {
   const res = await fetch(`${BASE_URL}/api/todos/${id}`, {
@@ -35,4 +39,14 @@ export async function getTodos() {
     throw new Error("データが取得できませんでした");
   }
   return res.json<Todo[]>();
+}
+
+export async function getShippingData() {
+  const res = await fetch(`${BASE_URL}/api/shipping`, {
+    cache: "no-store",
+  });
+  if (!res.ok) {
+    throw new Error("データが取得できませんでした");
+  }
+  return res.json<Shipping[]>();
 }
