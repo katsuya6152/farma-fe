@@ -1,4 +1,3 @@
-import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -59,7 +58,7 @@ export function AddDataDialog({ initialId }: AddDataDialogProps) {
       <DialogTrigger asChild>
         <Button variant="outline">新規追加</Button>
       </DialogTrigger>
-      <DialogContent>
+      <DialogContent className="max-w-7xl">
         <DialogHeader>
           <DialogTitle>新規追加</DialogTitle>
           <DialogDescription>

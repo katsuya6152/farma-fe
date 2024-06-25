@@ -3,15 +3,14 @@ import { Shipping } from "@/types/ShippingManagement";
 import { LucideSettings } from "lucide-react";
 import {
   DropdownMenu,
-  DropdownMenuCheckboxItem,
   DropdownMenuContent,
-  DropdownMenuItem,
   DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
-import { deleteShippingData, updateShippingData } from "@/lib/api";
+import { deleteShippingData, } from "@/lib/api";
+import { EditDataDialog } from "./EditDataDialog";
+import { DeleteDataDialog } from "./DeleteDataDialog";
 
 export const baseColumns: ColumnDef<Shipping>[] = [
   {
@@ -102,15 +101,6 @@ export const columns: ColumnDef<Shipping>[] = [
     enableHiding: false,
     cell: ({ row }) => {
       const data = row.original;
-      const handleEdit = async (data: Shipping) => {
-        // TODO: Open EditDataDialog
-        // await updateShippingData(data);
-        // window.location.reload();
-      };
-      const handleDelete = async (data: Shipping) => {
-        await deleteShippingData(Number(data.id));
-        window.location.reload();
-      };
 
       return (
         <DropdownMenu>
@@ -122,12 +112,8 @@ export const columns: ColumnDef<Shipping>[] = [
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>データ操作</DropdownMenuLabel>
-            <DropdownMenuItem onClick={() => handleEdit(data)}>
-              編集
-            </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => handleDelete(data)}>
-              削除
-            </DropdownMenuItem>
+            <EditDataDialog data={data} />
+            <DeleteDataDialog id={data.id} />
           </DropdownMenuContent>
         </DropdownMenu>
       );
