@@ -8,7 +8,6 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
-import { deleteShippingData, } from "@/lib/api";
 import { EditDataDialog } from "./EditDataDialog";
 import { DeleteDataDialog } from "./DeleteDataDialog";
 

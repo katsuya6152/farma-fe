@@ -36,15 +36,17 @@ export function DeleteDataDialog({ id }: DeleteDataDialogProps) {
             出荷データを削除することができます
           </DialogDescription>
         </DialogHeader>
-        <div className="py-4">
-          {`IDが${id}のデータを本当に削除しますか？`}
-        </div>
+        <div className="py-4">{`IDが${id}のデータを本当に削除しますか？`}</div>
         <DialogFooter>
+          <Button
+            variant="secondary"
+            type="submit"
+            onClick={() => setIsOpen(false)}
+          >
+            キャンセル
+          </Button>
           <Button variant="destructive" type="submit" onClick={onDelete}>
             削除
-          </Button>
-          <Button variant="secondary" type="submit" onClick={() => setIsOpen(false)}>
-            キャンセル
           </Button>
         </DialogFooter>
       </DialogContent>
