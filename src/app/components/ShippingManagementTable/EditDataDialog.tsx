@@ -42,47 +42,51 @@ export function EditDataDialog({ data }: EditDataDialogProps) {
       <DialogTrigger asChild className="w-full pl-2 pr-0 justify-start">
         <Button variant="ghost">編集</Button>
       </DialogTrigger>
-      
-      <DialogContent className="max-h-[70%]">
-        
-          <DialogHeader>
-            <DialogTitle>編集</DialogTitle>
-            <DialogDescription>
-              出荷データを編集することができます
-            </DialogDescription>
-          </DialogHeader>
-          <ScrollArea className="max-w-3xl max-h-96 whitespace-nowrap">
-            <div className="grid grid-cols-1 gap-4 p-4 h-full">
-              {baseColumns.map((column, index) => {
-                const inputId = `input-${column.id}-${index}`;
-                return (
-                  <div key={index} className="grid grid-cols-2 items-center justify-start justify-items-start gap-4">
-                    <Label htmlFor={inputId} className="text-right">
-                      {column.header?.toString()}
-                    </Label>
-                    {
-                      column.header?.toString() === "ID"
-                      ? <p>{formData[column.id as keyof Shipping]}</p> 
-                      : <Input
-                          id={inputId}
-                          value={formData[column.id as keyof Shipping] || ""}
-                          onChange={(e) =>
-                            handleChange(column.id as keyof Shipping, e.target.value)
-                          }
-                        />
-                    }
 
-                  </div>
-                );
-              })}
-            </div>
-            <ScrollBar />
-          </ScrollArea>
-          <DialogFooter>
-            <Button type="submit" onClick={onSave}>
-              保存
-            </Button>
-          </DialogFooter>
+      <DialogContent className="max-h-[70%]">
+        <DialogHeader>
+          <DialogTitle>編集</DialogTitle>
+          <DialogDescription>
+            出荷データを編集することができます
+          </DialogDescription>
+        </DialogHeader>
+        <ScrollArea className="max-w-3xl max-h-96 whitespace-nowrap">
+          <div className="grid grid-cols-1 gap-4 p-4 h-full">
+            {baseColumns.map((column, index) => {
+              const inputId = `input-${column.id}-${index}`;
+              return (
+                <div
+                  key={index}
+                  className="grid grid-cols-2 items-center justify-start justify-items-start gap-4"
+                >
+                  <Label htmlFor={inputId} className="text-right">
+                    {column.header?.toString()}
+                  </Label>
+                  {column.header?.toString() === "ID" ? (
+                    <p>{formData[column.id as keyof Shipping]}</p>
+                  ) : (
+                    <Input
+                      id={inputId}
+                      value={formData[column.id as keyof Shipping] || ""}
+                      onChange={(e) =>
+                        handleChange(
+                          column.id as keyof Shipping,
+                          e.target.value
+                        )
+                      }
+                    />
+                  )}
+                </div>
+              );
+            })}
+          </div>
+          <ScrollBar />
+        </ScrollArea>
+        <DialogFooter>
+          <Button type="submit" onClick={onSave}>
+            保存
+          </Button>
+        </DialogFooter>
       </DialogContent>
     </Dialog>
   );

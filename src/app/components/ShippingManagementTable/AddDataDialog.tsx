@@ -8,10 +8,11 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { baseColumns } from "./tableColumns";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Shipping } from "@/types/ShippingManagement";
 import { createShippingData } from "@/lib/api";
 
@@ -53,38 +54,53 @@ export function AddDataDialog({ initialId }: AddDataDialogProps) {
     window.location.reload();
   };
 
+  useEffect(() => {
+    setFormData({ ...formData, id: initialId });
+  }, [initialId]);
+
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
         <Button variant="outline">新規追加</Button>
       </DialogTrigger>
-      <DialogContent className="max-w-7xl">
+      <DialogContent className="max-h-[70%]">
         <DialogHeader>
           <DialogTitle>新規追加</DialogTitle>
           <DialogDescription>
             出荷データを新しく追加することができます
           </DialogDescription>
         </DialogHeader>
-        <div className="grid grid-cols-3 gap-4 py-4">
-          {baseColumns.map((column, index) => {
-            const inputId = `input-${column.id}-${index}`;
-            return (
-              <div key={index} className="grid grid-cols-4 items-center gap-4">
-                <Label htmlFor={inputId} className="text-right">
-                  {column.header?.toString()}
-                </Label>
-                <Input
-                  id={inputId}
-                  value={formData[column.id as keyof Shipping] || ""}
-                  onChange={(e) =>
-                    handleChange(column.id as keyof Shipping, e.target.value)
-                  }
-                  className="col-span-3"
-                />
-              </div>
-            );
-          })}
-        </div>
+        <ScrollArea className="max-w-3xl max-h-96 whitespace-nowrap">
+          <div className="grid grid-cols-1 gap-4 p-4 h-full">
+            {baseColumns.map((column, index) => {
+              const inputId = `input-${column.id}-${index}`;
+              return (
+                <div
+                  key={index}
+                  className="grid grid-cols-2 items-center justify-start justify-items-start gap-4"
+                >
+                  <Label htmlFor={inputId} className="text-right">
+                    {column.header?.toString()}
+                  </Label>
+                  {column.header?.toString() === "ID" ? (
+                    <p>{initialId}</p>
+                  ) : (
+                    <Input
+                      id={inputId}
+                      value={formData[column.id as keyof Shipping] || ""}
+                      onChange={(e) =>
+                        handleChange(
+                          column.id as keyof Shipping,
+                          e.target.value
+                        )
+                      }
+                    />
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </ScrollArea>
         <DialogFooter>
           <Button type="submit" onClick={onSave}>
             保存
