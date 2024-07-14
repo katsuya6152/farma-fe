@@ -1,19 +1,29 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 import { getShippingData } from "@/lib/api";
 import { Shipping } from "@/types/ShippingManagement";
 import ShippingManagementTable from "@/app/components/ShippingManagementTable/ShippingManagementTable";
-import Sidebar from "@/app/components/Sidebar";
-import Header from "@/app/components/Header";
+import Sidebar from "@/components/layouts/Sidebar";
+import Header from "@/components/layouts/Header";
 import { AddDataDialog } from "./components/ShippingManagementTable/AddDataDialog";
 import { columns } from "@/app/components/ShippingManagementTable/tableColumns";
 
 export const runtime = "edge";
 
 export default function TOP() {
+  const router = useRouter();
   const [shippingData, setShippingData] = useState<Shipping[]>([]);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      router.push("/login");
+    }
+  }, [router]);
 
   useEffect(() => {
     async function fetchData() {

@@ -1,4 +1,5 @@
 import { Shipping } from "@/types/ShippingManagement";
+import { AuthFormData } from "@/types/Auth";
 
 const BASE_URL = "https://farma-be.ka28.workers.dev";
 // const BASE_URL = "http://127.0.0.1:8787";
@@ -52,4 +53,17 @@ export async function deleteShippingData(id: number) {
     throw new Error("データを削除できませんでした");
   }
   return res.json<Todo>();
+}
+
+export async function auth(data: AuthFormData, isLogin: Boolean) {
+  const endpoint = isLogin ? "/api/users/login" : "/api/users/register";
+  const res = await fetch(BASE_URL + endpoint, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+
+  return res;
 }
