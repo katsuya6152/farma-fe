@@ -1,5 +1,5 @@
 import Link from "next/link";
-
+import { useRouter } from "next/navigation";
 import { Search, User } from "lucide-react";
 
 import {
@@ -21,6 +21,13 @@ import {
 import { Input } from "@/components/ui/input";
 
 export default function Header() {
+  const router = useRouter();
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    router.push("/login");
+  };
+
   return (
     <header className="sticky top-0 z-30 flex h-14 items-center gap-4 border-b bg-background sm:static sm:h-auto sm:border-0 sm:bg-transparent">
       <Breadcrumb className="hidden md:flex">
@@ -62,7 +69,7 @@ export default function Header() {
           <DropdownMenuItem>設定</DropdownMenuItem>
           <DropdownMenuItem>お問い合わせ</DropdownMenuItem>
           <DropdownMenuSeparator />
-          <DropdownMenuItem>ログアウト</DropdownMenuItem>
+          <DropdownMenuItem onClick={handleLogout}>ログアウト</DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
     </header>
