@@ -8,20 +8,37 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { baseColumns } from "./tableColumns";
-import { useState } from "react";
+import { baseColumns } from "../../shippingManagementTable/tableColumns";
+import { useEffect, useState } from "react";
 import { Shipping } from "@/types/ShippingManagement";
-import { updateShippingData } from "@/lib/api";
-import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
+import { createShippingData } from "@/lib/api";
 
-interface EditDataDialogProps {
-  data: Shipping;
+interface AddDataDialogProps {
+  initialId: string;
 }
 
-export function EditDataDialog({ data }: EditDataDialogProps) {
-  const [formData, setFormData] = useState(data);
+export function AddDataDialog({ initialId }: AddDataDialogProps) {
+  const [formData, setFormData] = useState<Shipping>({
+    id: initialId,
+    name: "",
+    father: "",
+    mothersFather: "",
+    mothersGrandfather: "",
+    grandmothersGrandfather: "",
+    matingDate: "",
+    expectedBirthDate: "",
+    birthDate: "",
+    auctionDate: "",
+    weight: 0,
+    daysOld: 0,
+    sex: "",
+    price: 0,
+    buyer: "",
+    memo: "",
+  });
   const [isOpen, setIsOpen] = useState(false);
 
   const handleChange = (key: keyof Shipping, value: string) => {
@@ -32,22 +49,25 @@ export function EditDataDialog({ data }: EditDataDialogProps) {
   };
 
   const onSave = async () => {
-    await updateShippingData(formData);
+    await createShippingData(formData);
     setIsOpen(false);
     window.location.reload();
   };
 
+  useEffect(() => {
+    setFormData({ ...formData, id: initialId });
+  }, [initialId]);
+
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
-      <DialogTrigger asChild className="w-full pl-2 pr-0 justify-start">
-        <Button variant="ghost">編集</Button>
+      <DialogTrigger asChild>
+        <Button variant="outline">新規追加</Button>
       </DialogTrigger>
-
       <DialogContent className="max-h-[70%]">
         <DialogHeader>
-          <DialogTitle>編集</DialogTitle>
+          <DialogTitle>新規追加</DialogTitle>
           <DialogDescription>
-            出荷データを編集することができます
+            出荷データを新しく追加することができます
           </DialogDescription>
         </DialogHeader>
         <ScrollArea className="max-w-3xl max-h-96 whitespace-nowrap">
@@ -63,7 +83,7 @@ export function EditDataDialog({ data }: EditDataDialogProps) {
                     {column.header?.toString()}
                   </Label>
                   {column.header?.toString() === "ID" ? (
-                    <p>{formData[column.id as keyof Shipping]}</p>
+                    <p>{initialId}</p>
                   ) : (
                     <Input
                       id={inputId}
@@ -71,7 +91,7 @@ export function EditDataDialog({ data }: EditDataDialogProps) {
                       onChange={(e) =>
                         handleChange(
                           column.id as keyof Shipping,
-                          e.target.value
+                          e.target.value,
                         )
                       }
                     />
@@ -80,7 +100,6 @@ export function EditDataDialog({ data }: EditDataDialogProps) {
               );
             })}
           </div>
-          <ScrollBar />
         </ScrollArea>
         <DialogFooter>
           <Button type="submit" onClick={onSave}>

@@ -1,5 +1,7 @@
 import { Shipping } from "@/types/ShippingManagement";
 import { AuthFormData } from "@/types/Auth";
+import { Cow } from "@/types/Cow";
+import cowsData from "./apiTestCowsData.json";
 
 const BASE_URL = "https://farma-be.ka28.workers.dev";
 // const BASE_URL = "http://127.0.0.1:8787";
@@ -25,7 +27,7 @@ export async function createShippingData(data: Shipping) {
   if (!res.ok) {
     throw new Error("データを登録できませんでした");
   }
-  return res.json<Todo>();
+  return res.json<Shipping>();
 }
 
 export async function updateShippingData(data: Shipping) {
@@ -39,7 +41,7 @@ export async function updateShippingData(data: Shipping) {
   if (!res.ok) {
     throw new Error("データを更新できませんでした");
   }
-  return res.json<Todo>();
+  return res.json<Shipping>();
 }
 
 export async function deleteShippingData(id: number) {
@@ -52,7 +54,7 @@ export async function deleteShippingData(id: number) {
   if (!res.ok) {
     throw new Error("データを削除できませんでした");
   }
-  return res.json<Todo>();
+  return res.json<Shipping>();
 }
 
 export async function auth(data: AuthFormData, isLogin: Boolean) {
@@ -66,4 +68,38 @@ export async function auth(data: AuthFormData, isLogin: Boolean) {
   });
 
   return res;
+}
+
+export async function getCows() {
+  // const res = await fetch(`${BASE_URL}/api/cows`, {
+  //   cache: "no-store",
+  // });
+  // if (!res.ok) {
+  //   throw new Error("データが取得できませんでした");
+  // }
+  // return res.json<Cow[]>();
+
+  return new Promise<Cow[]>((resolve, reject) => {
+    setTimeout(() => {
+      if (cowsData) {
+        resolve(cowsData);
+      } else {
+        reject(new Error("No data found"));
+      }
+    }, 1000);
+  });
+}
+
+export async function updateCowData(data: Cow) {
+  const res = await fetch(`${BASE_URL}/api/cow/${data.id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+  if (!res.ok) {
+    throw new Error("データを更新できませんでした");
+  }
+  return res.json<Cow>();
 }

@@ -1,5 +1,4 @@
 import { ColumnDef } from "@tanstack/react-table";
-import { Shipping } from "@/types/ShippingManagement";
 import { LucideSettings } from "lucide-react";
 import {
   DropdownMenu,
@@ -10,8 +9,9 @@ import {
 import { Button } from "@/components/ui/button";
 import { EditDataDialog } from "@/app/components/common/dialog/EditDataDialog";
 import { DeleteDataDialog } from "@/app/components/common/dialog/DeleteDataDialog";
+import { Cow } from "@/types/Cow";
 
-export const baseColumns: ColumnDef<Shipping>[] = [
+export const baseColumns: ColumnDef<Cow>[] = [
   {
     id: "id",
     header: "ID",
@@ -19,8 +19,18 @@ export const baseColumns: ColumnDef<Shipping>[] = [
   },
   {
     id: "name",
-    header: "名前",
+    header: "名号",
     accessorFn: (row) => row.name,
+  },
+  {
+    id: "gender",
+    header: "性別",
+    accessorFn: (row) => row.gender,
+  },
+  {
+    id: "birthDate",
+    header: "生年月日",
+    accessorFn: (row) => row.birthDate,
   },
   {
     id: "father",
@@ -43,58 +53,43 @@ export const baseColumns: ColumnDef<Shipping>[] = [
     accessorFn: (row) => row.grandmothersGrandfather,
   },
   {
-    id: "matingDate",
-    header: "種付け年月日",
-    accessorFn: (row) => row.matingDate,
+    id: "motherName",
+    header: "母牛",
+    accessorFn: (row) => row.motherName,
   },
   {
-    id: "expectedBirthDate",
-    header: "出産予定日",
-    accessorFn: (row) => row.expectedBirthDate,
+    id: "motherRegistrationNumber",
+    header: "母牛登録番号",
+    accessorFn: (row) => row.motherRegistrationNumber,
   },
   {
-    id: "birthDate",
-    header: "生年月日",
-    accessorFn: (row) => row.birthDate,
+    id: "motherScore",
+    header: "母得点",
+    accessorFn: (row) => row.motherScore,
   },
   {
-    id: "auctionDate",
-    header: "せり年月日",
-    accessorFn: (row) => row.auctionDate,
+    id: "motherBirthDate",
+    header: "母年月",
+    accessorFn: (row) => row.motherBirthDate,
   },
   {
-    id: "weight",
-    header: "体重",
-    accessorFn: (row) => row.weight,
+    id: "producerName",
+    header: "生産者",
+    accessorFn: (row) => row.producerName,
   },
   {
-    id: "daysOld",
-    header: "日齢",
-    accessorFn: (row) => row.daysOld,
+    id: "status",
+    header: "状態",
+    accessorFn: (row) => row.status,
   },
   {
-    id: "sex",
-    header: "性別",
-    accessorFn: (row) => row.sex,
-  },
-  {
-    id: "price",
-    header: "価格",
-    accessorFn: (row) => row.price,
-  },
-  {
-    id: "buyer",
-    header: "購買者",
-    accessorFn: (row) => row.buyer,
-  },
-  {
-    id: "memo",
+    id: "notes",
     header: "備考",
-    accessorFn: (row) => row.memo,
+    accessorFn: (row) => row.notes,
   },
 ];
 
-export const columns: ColumnDef<Shipping>[] = [
+export const cowsTableColumns: ColumnDef<Cow>[] = [
   {
     id: "actions",
     enableHiding: false,

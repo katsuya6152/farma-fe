@@ -5,11 +5,10 @@ import { useRouter } from "next/navigation";
 
 import { getShippingData } from "@/lib/api";
 import { Shipping } from "@/types/ShippingManagement";
-import ShippingManagementTable from "@/app/components/ShippingManagementTable/ShippingManagementTable";
-import Sidebar from "@/components/layouts/Sidebar";
+import ShippingManagementTable from "@/app/components/shippingManagementTable/ShippingManagementTable";
 import Header from "@/components/layouts/Header";
-import { AddDataDialog } from "./components/ShippingManagementTable/AddDataDialog";
-import { columns } from "@/app/components/ShippingManagementTable/tableColumns";
+import { AddDataDialog } from "./components/common/dialog/AddDataDialog";
+import { columns } from "@/app/components/shippingManagementTable/tableColumns";
 
 export const runtime = "edge";
 
@@ -34,15 +33,12 @@ export default function TOP() {
   }, []);
 
   return (
-    <div className="grid min-h-screen md:grid-cols-[120px_1fr] lg:grid-cols-[180px_1fr]">
-      <Sidebar />
-      <main className="container my-4 max-w-full overflow-x-auto">
-        <Header />
-        <div className="flex gap-4 my-4 justify-end">
-          <AddDataDialog initialId={String(shippingData.length + 1)} />
-        </div>
-        <ShippingManagementTable columns={columns} data={shippingData} />
-      </main>
-    </div>
+    <main className="container my-4 max-w-full overflow-x-auto">
+      <Header />
+      <div className="flex gap-4 my-4 justify-end">
+        <AddDataDialog initialId={String(shippingData.length + 1)} />
+      </div>
+      <ShippingManagementTable columns={columns} data={shippingData} />
+    </main>
   );
 }

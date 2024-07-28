@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Home, Folder } from "lucide-react";
+import { ClipboardList, Folder, Truck, Calculator } from "lucide-react";
 
 export default function Sidebar() {
   return (
@@ -14,11 +14,29 @@ export default function Sidebar() {
         <div className="flex-1">
           <nav className="grid items-start px-2 text-sm font-medium lg:px-4">
             <Link
-              href="#"
-              className="flex items-center gap-3 rounded-lg px-3 py-2 transition-all hover:text-primary bg-muted text-primary"
+              href="/cows"
+              className="flex items-center gap-3 rounded-lg px-3 py-2 transition-all hover:text-primary bg-muted text-primary font-bold"
             >
-              <Home className="h-4 w-4" />
-              Home
+              <ClipboardList className="h-6 w-6" />
+              牛一覧
+            </Link>
+          </nav>
+          <nav className="grid items-start px-2 text-sm font-medium lg:px-4">
+            <Link
+              href="/shipments"
+              className="flex items-center gap-3 rounded-lg px-3 py-2 transition-all hover:text-primary"
+            >
+              <Truck className="h-6 w-6" />
+              出荷一覧
+            </Link>
+          </nav>
+          <nav className="grid items-start px-2 text-sm font-medium lg:px-4">
+            <Link
+              href="/auction-results"
+              className="flex items-center gap-3 rounded-lg px-3 py-2 transition-all hover:text-primary"
+            >
+              <Calculator className="h-6 w-6" />
+              せり結果
             </Link>
           </nav>
         </div>
