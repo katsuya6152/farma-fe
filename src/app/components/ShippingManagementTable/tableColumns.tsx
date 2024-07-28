@@ -111,7 +111,8 @@ export const columns: ColumnDef<Shipping>[] = [
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>データ操作</DropdownMenuLabel>
-            <EditDataDialog data={data} />
+            {/* TODO: Fix */}
+            {/* <EditDataDialog data={data} /> */}
             <DeleteDataDialog id={data.id} />
           </DropdownMenuContent>
         </DropdownMenu>
