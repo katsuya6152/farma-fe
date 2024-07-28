@@ -1,7 +1,4 @@
-"use client";
-
-import { useState } from "react";
-
+import Link from "next/link";
 import {
   ColumnDef,
   flexRender,
@@ -24,7 +21,7 @@ interface DataTableProps<TData, TValue> {
   data: TData[];
 }
 
-export function ShippingManagementTable<TData, TValue>({
+export function CowsTable<TData, TValue>({
   columns,
   data,
 }: DataTableProps<TData, TValue>) {
@@ -33,10 +30,6 @@ export function ShippingManagementTable<TData, TValue>({
     columns,
     getCoreRowModel: getCoreRowModel(),
   });
-  const [editingId, setEditingId] = useState<string | null>(null);
-  const toggleEdit = (id: string) => {
-    setEditingId(editingId === id ? null : id);
-  };
 
   return (
     <>
@@ -52,7 +45,7 @@ export function ShippingManagementTable<TData, TValue>({
                         ? null
                         : flexRender(
                             header.column.columnDef.header,
-                            header.getContext()
+                            header.getContext(),
                           )}
                     </TableHead>
                   );
@@ -71,7 +64,7 @@ export function ShippingManagementTable<TData, TValue>({
                     <TableCell key={cell.id}>
                       {flexRender(
                         cell.column.columnDef.cell,
-                        cell.getContext()
+                        cell.getContext(),
                       )}
                     </TableCell>
                   ))}
@@ -95,4 +88,4 @@ export function ShippingManagementTable<TData, TValue>({
   );
 }
 
-export default ShippingManagementTable;
+export default CowsTable;
