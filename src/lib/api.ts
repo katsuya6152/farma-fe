@@ -90,6 +90,19 @@ export async function getCows() {
   });
 }
 
+export async function getCowData(id: string) {
+  return new Promise<Cow | null>((resolve, reject) => {
+    setTimeout(() => {
+      const cowData = cowsData.find((c) => c.id === id);
+      if (cowData) {
+        resolve(cowData);
+      } else {
+        reject(new Error(`Cow with id ${id} not found`));
+      }
+    }, 1000);
+  });
+}
+
 export async function updateCowData(data: Cow) {
   const res = await fetch(`${BASE_URL}/api/cow/${data.id}`, {
     method: "PUT",

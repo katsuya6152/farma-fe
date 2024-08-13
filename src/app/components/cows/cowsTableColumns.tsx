@@ -14,7 +14,7 @@ import { Cow } from "@/types/Cow";
 export const baseColumns: ColumnDef<Cow>[] = [
   {
     id: "id",
-    header: "ID",
+    header: "個体識別番号",
     accessorFn: (row) => row.id,
   },
   {
