@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
 
 import { getCows } from "@/lib/api";
 import CowsTable from "@/app/components/cows/CowsTable";
@@ -12,16 +11,7 @@ import { Cow } from "@/types/Cow";
 export const runtime = "edge";
 
 export default function ListPage() {
-  const router = useRouter();
   const [cowData, setCowData] = useState<Cow[]>([]);
-
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-
-    if (!token) {
-      router.push("/login");
-    }
-  }, [router]);
 
   useEffect(() => {
     async function fetchData() {

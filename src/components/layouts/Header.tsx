@@ -14,7 +14,7 @@ import { LogoutDialog } from "@/app/components/common/dialog/LogoutDialog";
 
 export default function Header() {
   return (
-    <header className="sticky top-0 z-30 flex justify-between h-14 items-center gap-4 border-b bg-background sm:static sm:h-auto sm:border-0 sm:bg-transparent m-2">
+    <header className="sticky top-0 z-30 flex justify-between h-14 items-center gap-4 border-b bg-background sm:static sm:h-auto sm:border-0 sm:bg-transparent m-4">
       <div className="relative flex-1 md:grow-0">
         <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
         <Input

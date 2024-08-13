@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { useEffect } from "react";
+import { usePathname, useRouter } from "next/navigation";
 import {
   ClipboardList,
   Folder,
@@ -47,7 +48,16 @@ const SidebarLink: React.FC<SidebarLinkProps> = ({
 );
 
 export default function Sidebar() {
+  const router = useRouter();
   const pathname = usePathname();
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      router.push("/login");
+    }
+  }, [router]);
 
   return (
     <div className="hidden border-r bg-muted/40 md:block">
@@ -66,7 +76,7 @@ export default function Sidebar() {
                 href={link.href}
                 icon={link.icon}
                 label={link.label}
-                isActive={pathname === link.href}
+                isActive={pathname.includes(link.href)}
               />
             ))}
           </nav>
