@@ -1,5 +1,3 @@
-import Sidebar from "@/components/layouts/Sidebar";
-
 export default function ShipmentsPage() {
   return (
     <div className="min-h-screen flex justify-center items-center bg-gray-100">

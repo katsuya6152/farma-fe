@@ -5,7 +5,6 @@ import { useRouter } from "next/navigation";
 
 import { getCows } from "@/lib/api";
 import CowsTable from "@/app/components/cows/CowsTable";
-import Header from "@/components/layouts/Header";
 import { AddDataDialog } from "@/app/components/common/dialog/AddDataDialog";
 import { cowsTableColumns } from "@/app/components/cows/cowsTableColumns";
 import { Cow } from "@/types/Cow";
@@ -33,12 +32,11 @@ export default function ListPage() {
   }, []);
 
   return (
-    <main className="container my-4 max-w-full overflow-x-auto">
-      <Header />
+    <div className="my-4">
       <div className="flex gap-4 my-4 justify-end">
         <AddDataDialog initialId={String(cowData.length + 1)} />
       </div>
       <CowsTable columns={cowsTableColumns} data={cowData} />
-    </main>
+    </div>
   );
 }
