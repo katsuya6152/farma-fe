@@ -4,8 +4,7 @@ import { useEffect, useState } from "react";
 
 import { getCowData } from "@/lib/api";
 import { Cow } from "@/types/Cow";
-import { BasicInfoCard } from "@/app/components/cow/BasicInfoCard";
-import { PedigreeInfoCard } from "@/app/components/cow/PedigreeInfoCard";
+import { BasicInfo } from "@/app/components/cow/BasicInfo";
 import { Timeline } from "@/app/components/cow/Timeline";
 
 export const runtime = "edge";
@@ -30,11 +29,8 @@ export default function SinglePage({ params }: { params: { id: string } }) {
 
   return (
     <div className="space-y-6">
-      <BasicInfoCard data={cowData} />
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <PedigreeInfoCard />
-        <Timeline />
-      </div>
+      <BasicInfo data={cowData} />
+      <Timeline />
     </div>
   );
 }
