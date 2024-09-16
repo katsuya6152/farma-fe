@@ -9,6 +9,12 @@ import {
   Truck,
   Calculator,
   LucideIcon,
+  Settings,
+  User,
+  CircleHelp,
+  AlarmClockPlus,
+  Bell,
+  CircleGauge,
 } from "lucide-react";
 
 interface SidebarLinkItem {
@@ -17,10 +23,19 @@ interface SidebarLinkItem {
   label: string;
 }
 
-const sidebarLinks: SidebarLinkItem[] = [
-  { href: "/cows", icon: ClipboardList, label: "牛一覧" },
+const mainSidebarLinks: SidebarLinkItem[] = [
+  { href: "/dashboard", icon: CircleGauge, label: "ダッシュボード" },
+  { href: "/cattle", icon: ClipboardList, label: "個体一覧" },
   { href: "/shipments", icon: Truck, label: "出荷一覧" },
   { href: "/auction-results", icon: Calculator, label: "せり結果" },
+  { href: "/reminders", icon: AlarmClockPlus, label: "リマインダー設定" },
+  { href: "/notifications", icon: Bell, label: "通知一覧" },
+];
+
+const bottomSidebarLinks: SidebarLinkItem[] = [
+  { href: "/profile", icon: User, label: "ユーザー" },
+  { href: "/settings", icon: Settings, label: "設定" },
+  { href: "/help", icon: CircleHelp, label: "ヘルプ" },
 ];
 
 interface SidebarLinkProps {
@@ -70,7 +85,20 @@ export default function Sidebar() {
         </div>
         <div className="flex-1">
           <nav className="grid items-start px-2 text-sm font-medium lg:px-4">
-            {sidebarLinks.map((link) => (
+            {mainSidebarLinks.map((link) => (
+              <SidebarLink
+                key={link.href}
+                href={link.href}
+                icon={link.icon}
+                label={link.label}
+                isActive={pathname.includes(link.href)}
+              />
+            ))}
+          </nav>
+        </div>
+        <div className="mt-auto pb-4">
+          <nav className="grid items-start px-2 text-sm font-medium lg:px-4">
+            {bottomSidebarLinks.map((link) => (
               <SidebarLink
                 key={link.href}
                 href={link.href}

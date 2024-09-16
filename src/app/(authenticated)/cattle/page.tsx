@@ -22,7 +22,7 @@ export default function ListPage() {
   }, []);
 
   return (
-    <div className="my-4">
+    <div className="p-4">
       <div className="flex gap-4 my-4 justify-end">
         <AddDataDialog initialId={String(cowData.length + 1)} />
       </div>

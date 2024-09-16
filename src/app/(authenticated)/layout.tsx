@@ -19,9 +19,9 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body className={inter.className}>
-        <div className="grid min-h-screen md:grid-cols-[180px_1fr] lg:grid-cols-[220px_1fr]">
+        <div className="grid h-screen md:grid-cols-[180px_1fr] lg:grid-cols-[220px_1fr]">
           <Sidebar />
-          <main className="container my-4 max-w-full overflow-x-auto">
+          <main className="my-4 max-w-full overflow-x-auto">
             <Header />
             {children}
           </main>
