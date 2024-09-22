@@ -2,6 +2,7 @@ import { Shipping } from "@/types/ShippingManagement";
 import { AuthFormData } from "@/types/Auth";
 import { Cow } from "@/types/Cow";
 import cowsData from "./apiTestCowsData.json";
+import { Cattle } from "@/components/cattle/data/schema";
 
 const BASE_URL = "https://farma-be.ka28.workers.dev";
 // const BASE_URL = "http://127.0.0.1:8787";
@@ -79,7 +80,7 @@ export async function getCows() {
   // }
   // return res.json<Cow[]>();
 
-  return new Promise<Cow[]>((resolve, reject) => {
+  return new Promise<Cattle[]>((resolve, reject) => {
     setTimeout(() => {
       if (cowsData) {
         resolve(cowsData);

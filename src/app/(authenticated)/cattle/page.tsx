@@ -3,19 +3,18 @@
 import { useEffect, useState } from "react";
 
 import { getCows } from "@/lib/api";
-import CowsTable from "@/app/components/cows/CowsTable";
-import { AddDataDialog } from "@/app/components/common/dialog/AddDataDialog";
-import { cowsTableColumns } from "@/app/components/cows/cowsTableColumns";
-import { Cow } from "@/types/Cow";
+import { CattleDataTable } from "@/components/cattle/CattleTable";
+import { columns } from "@/components/cattle/cattle-columns";
+import { Cattle } from "@/components/cattle/data/schema";
 
 export const runtime = "edge";
 
 export default function ListPage() {
-  const [cowData, setCowData] = useState<Cow[]>([]);
+  const [cowData, setCowData] = useState<Cattle[]>([]);
 
   useEffect(() => {
     async function fetchData() {
-      const data: Cow[] = await getCows();
+      const data = await getCows();
       setCowData(data);
     }
     fetchData();
@@ -23,10 +22,7 @@ export default function ListPage() {
 
   return (
     <div className="p-4">
-      <div className="flex gap-4 my-4 justify-end">
-        <AddDataDialog initialId={String(cowData.length + 1)} />
-      </div>
-      <CowsTable columns={cowsTableColumns} data={cowData} />
+      <CattleDataTable data={cowData} columns={columns} />
     </div>
   );
 }

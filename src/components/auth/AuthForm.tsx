@@ -50,7 +50,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ isLogin }) => {
       if (isLogin) {
         const result: LoginResponse = await response.json();
         localStorage.setItem("token", result.jwt);
-        router.push("/cows");
+        router.push("/dashboard");
       } else {
         const result: RegistrationResponse = await response.json();
         alert("Registration successful!");
