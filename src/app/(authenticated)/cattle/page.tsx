@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 import { getCows } from "@/lib/api";
 import { CattleDataTable } from "@/components/cattle/CattleTable";
-import { columns } from "@/components/cattle/cattle-columns";
+import { columns } from "@/components/cattle/data-table/cattle-columns";
 import { Cattle } from "@/components/cattle/data/schema";
 
 export const runtime = "edge";

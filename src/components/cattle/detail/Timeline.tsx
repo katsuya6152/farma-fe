@@ -9,7 +9,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { TimelineEventCard } from "./TimelineEventCard";
+import { TimelineEventCard } from "./timeline-event-card";
 
 export function Timeline() {
   const events = [
