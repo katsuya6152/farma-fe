@@ -3,11 +3,11 @@
 import { Cross2Icon } from "@radix-ui/react-icons";
 import { Table } from "@tanstack/react-table";
 
-import { Button } from "../ui/button";
-import { Input } from "../ui/input";
+import { Button } from "../../ui/button";
+import { Input } from "../../ui/input";
 import { DataTableViewOptions } from "./data-table-view-options";
 
-import { priorities, statuses } from "./data/data";
+import { priorities, statuses } from "../data/data";
 import { DataTableFacetedFilter } from "./data-table-faceted-filter";
 import { DataTablePagination } from "./data-table-pagination";
 
@@ -59,6 +59,12 @@ export function DataTableToolbar<TData>({
           </Button>
         )}
         <DataTableViewOptions table={table} />
+        {table.getFilteredSelectedRowModel().rows.length > 0 && (
+          <div className="flex-1 text-sm text-muted-foreground">
+            {table.getFilteredRowModel().rows.length} 件中
+            {table.getFilteredSelectedRowModel().rows.length}件選択中
+          </div>
+        )}
       </div>
       <div className="flex gap-2">
         <DataTablePagination table={table} />

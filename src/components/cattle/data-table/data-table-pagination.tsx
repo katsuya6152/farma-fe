@@ -6,14 +6,14 @@ import {
 } from "@radix-ui/react-icons";
 import { Table } from "@tanstack/react-table";
 
-import { Button } from "../ui/button";
+import { Button } from "../../ui/button";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "../ui/select";
+} from "../../ui/select";
 
 interface DataTablePaginationProps<TData> {
   table: Table<TData>;
@@ -24,10 +24,10 @@ export function DataTablePagination<TData>({
 }: DataTablePaginationProps<TData>) {
   return (
     <div className="flex items-center justify-between px-2 gap-2">
-      <div className="flex-1 text-sm text-muted-foreground">
+      {/* <div className="flex-1 text-sm text-muted-foreground">
         {table.getFilteredRowModel().rows.length} 件中
         {table.getFilteredSelectedRowModel().rows.length}件選択中
-      </div>
+      </div> */}
       <div className="flex items-center gap-2">
         <div className="flex items-center space-x-2">
           <p className="text-sm font-medium">表示件数</p>

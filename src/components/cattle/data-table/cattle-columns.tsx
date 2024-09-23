@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { ColumnDef } from "@tanstack/react-table";
 
 import { Badge } from "@/components/ui/badge";
@@ -49,7 +50,13 @@ export const columns: ColumnDef<Cattle>[] = [
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="名号" />
     ),
-    cell: ({ row }) => <div className="w-[100px]">{row.getValue("name")}</div>,
+    cell: ({ row }) => (
+      <div className="w-[80px] text-blue-500 hover:text-blue-700 underline hover:no-underline">
+        <Link href={`/cattle/${row.getValue("id")}`}>
+          {row.getValue("name")}
+        </Link>
+      </div>
+    ),
     enableSorting: false,
     enableHiding: false,
     // accessorKey: "name",
@@ -126,7 +133,7 @@ export const columns: ColumnDef<Cattle>[] = [
       <DataTableColumnHeader column={column} title="母の母の祖父" />
     ),
     cell: ({ row }) => (
-      <div className="w-[80px]">{row.getValue("grandmothersGrandfather")}</div>
+      <div className="w-[100px]">{row.getValue("grandmothersGrandfather")}</div>
     ),
     enableSorting: false,
     enableHiding: true,
@@ -148,7 +155,9 @@ export const columns: ColumnDef<Cattle>[] = [
       <DataTableColumnHeader column={column} title="母牛登録番号" />
     ),
     cell: ({ row }) => (
-      <div className="w-[80px]">{row.getValue("motherRegistrationNumber")}</div>
+      <div className="w-[100px]">
+        {row.getValue("motherRegistrationNumber")}
+      </div>
     ),
     enableSorting: false,
     enableHiding: true,

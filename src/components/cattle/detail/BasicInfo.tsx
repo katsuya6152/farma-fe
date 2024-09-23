@@ -15,6 +15,7 @@ import { Cow } from "@/types/Cow";
 
 interface BasicInfoProps {
   data: Cow | undefined;
+  isLoading: boolean;
 }
 
 const InfoItem = ({ label, value }: { label: string; value?: string }) => (
@@ -24,7 +25,14 @@ const InfoItem = ({ label, value }: { label: string; value?: string }) => (
   </p>
 );
 
-export function BasicInfo({ data }: BasicInfoProps) {
+export function BasicInfo({ data, isLoading }: BasicInfoProps) {
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-4 border-blue-500 border-solid border-opacity-50"></div>
+      </div>
+    );
+  }
   if (!data) {
     return <p>データが見つかりません。</p>;
   }
