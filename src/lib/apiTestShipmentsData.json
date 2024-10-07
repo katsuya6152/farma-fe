@@ -1,0 +1,46 @@
+{
+  "shipmentPlans": [
+    {
+      "id": "plan001",
+      "shipmentDate": "2023-12-01",
+      "cattleId": "cow001",
+      "name": "花子",
+      "destination": "市場A",
+      "status": "進行中"
+    },
+    {
+      "id": "plan002",
+      "shipmentDate": "2023-11-15",
+      "cattleId": "cow003",
+      "name": "紅梅",
+      "destination": "市場B",
+      "status": "完了"
+    },
+    {
+      "id": "plan003",
+      "shipmentDate": "2023-11-25",
+      "cattleId": "cow004",
+      "name": "松風",
+      "destination": "市場C",
+      "status": "キャンセル"
+    }
+  ],
+  "shipmentRecords": [
+    {
+      "id": "record001",
+      "actualShipmentDate": "2023-12-01",
+      "cattleId": "cow001",
+      "name": "花子",
+      "destination": "市場A",
+      "price": 200000
+    },
+    {
+      "id": "record002",
+      "actualShipmentDate": "2023-11-15",
+      "cattleId": "cow003",
+      "name": "紅梅",
+      "destination": "市場B",
+      "price": 150000
+    }
+  ]
+}
