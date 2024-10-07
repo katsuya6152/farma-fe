@@ -25,16 +25,16 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
-import { DataTableToolbar } from "./data-table/data-table-toolbar";
-
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
+  toolbar: (table: any) => React.ReactNode;
 }
 
-export function CattleDataTable<TData, TValue>({
+export function DataTable<TData, TValue>({
   columns,
   data,
+  toolbar,
 }: DataTableProps<TData, TValue>) {
   const [rowSelection, setRowSelection] = React.useState({});
   const [columnVisibility, setColumnVisibility] =
@@ -68,7 +68,7 @@ export function CattleDataTable<TData, TValue>({
 
   return (
     <div className="space-y-4">
-      <DataTableToolbar table={table} />
+      {toolbar(table)}
       <div className="rounded-md border">
         <Table>
           <TableHeader>

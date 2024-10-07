@@ -2,7 +2,9 @@ import { Shipping } from "@/types/ShippingManagement";
 import { AuthFormData } from "@/types/Auth";
 import { Cow } from "@/types/Cow";
 import cowsData from "./apiTestCowsData.json";
+import shipmentsData from "./apiTestShipmentsData.json";
 import { Cattle } from "@/components/cattle/data/schema";
+import { ShipmentData } from "@/components/shipments/data/schema";
 
 const BASE_URL = "https://farma-be.ka28.workers.dev";
 // const BASE_URL = "http://127.0.0.1:8787";
@@ -116,4 +118,16 @@ export async function updateCowData(data: Cow) {
     throw new Error("データを更新できませんでした");
   }
   return res.json<Cow>();
+}
+
+export async function getShipments() {
+  return new Promise<ShipmentData>((resolve, reject) => {
+    setTimeout(() => {
+      if (shipmentsData) {
+        resolve(shipmentsData);
+      } else {
+        reject(new Error("No data found"));
+      }
+    }, 1000);
+  });
 }

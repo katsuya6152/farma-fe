@@ -3,9 +3,10 @@
 import { useEffect, useState } from "react";
 
 import { getCows } from "@/lib/api";
-import { CattleDataTable } from "@/components/cattle/CattleTable";
 import { columns } from "@/components/cattle/data-table/cattle-columns";
 import { Cattle } from "@/components/cattle/data/schema";
+import { DataTable } from "@/components/ui/data-table";
+import { CattleDataTableToolbar } from "@/components/cattle/data-table/data-table-toolbar";
 
 export const runtime = "edge";
 
@@ -22,7 +23,11 @@ export default function ListPage() {
 
   return (
     <div className="p-4">
-      <CattleDataTable data={cowData} columns={columns} />
+      <DataTable
+        data={cowData}
+        columns={columns}
+        toolbar={(table) => <CattleDataTableToolbar table={table} />}
+      />
     </div>
   );
 }

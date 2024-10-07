@@ -8,7 +8,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 
 import { labels, priorities, statuses } from "@/components/cattle/data/data";
 import { Cattle } from "@/components/cattle/data/schema";
-import { DataTableColumnHeader } from "./data-table-column-header";
+import { DataTableColumnHeader } from "@/components/ui/data-table/data-table-column-header";
 import { DataTableRowActions } from "./data-table-row-actions";
 
 export const columns: ColumnDef<Cattle>[] = [
