@@ -4,9 +4,9 @@ import { useEffect, useState } from "react";
 
 import { getCows } from "@/lib/api";
 import { columns } from "@/components/cattle/data-table/cattle-columns";
-import { Cattle } from "@/components/cattle/data/schema";
 import { DataTable } from "@/components/ui/data-table";
 import { CattleDataTableToolbar } from "@/components/cattle/data-table/data-table-toolbar";
+import type { Cattle } from "@/components/cattle/data/schema";
 
 export const runtime = "edge";
 
